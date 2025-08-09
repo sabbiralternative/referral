@@ -13,14 +13,14 @@ import DirectDeposit from "../../../../components/modal/Master/Client/DirectDepo
 import useCloseModalClickOutside from "../../../../hooks/useCloseModalClickOutside";
 import { jwtDecode } from "jwt-decode";
 import { AdminRole, clientColor } from "../../../../constant/constant";
-import ClientWithdrawDeposit from "./BranchStaffActionPermission/ClientWithdrawDeposit";
-import DepositPermission from "./BranchStaffActionPermission/DepositPermission";
-import ClientPermission from "./BranchStaffActionPermission/ClientPermission";
-import WithdrawPermission from "./BranchStaffActionPermission/WithdrawPermission";
-import OtherRoleAction from "./BranchStaffActionPermission/OtherRoleAction";
-import DepositClient from "./BranchStaffActionPermission/DepositClient";
-import DepositWithdraw from "./BranchStaffActionPermission/DepositWithdraw";
-import WithdrawClient from "./BranchStaffActionPermission/WithdrawClient";
+// import ClientWithdrawDeposit from "./BranchStaffActionPermission/ClientWithdrawDeposit";
+// import DepositPermission from "./BranchStaffActionPermission/DepositPermission";
+// import ClientPermission from "./BranchStaffActionPermission/ClientPermission";
+// import WithdrawPermission from "./BranchStaffActionPermission/WithdrawPermission";
+// import OtherRoleAction from "./BranchStaffActionPermission/OtherRoleAction";
+// import DepositClient from "./BranchStaffActionPermission/DepositClient";
+// import DepositWithdraw from "./BranchStaffActionPermission/DepositWithdraw";
+// import WithdrawClient from "./BranchStaffActionPermission/WithdrawClient";
 import ChangeColor from "../../../../components/modal/ChangeColor";
 import ChangeBranch from "../../../../components/modal/HyperMaster/Client/ChangeBranch";
 import handleNavigateToWhatsApp from "../../../../utils/handleNavigateToWhatsApp";
@@ -366,143 +366,15 @@ const ViewClient = () => {
                           <td>{client?.site}</td>
                           <td>{client?.registrationDate}</td>
 
-                          {/* Not for branch_staff */}
-                          {adminRole !== AdminRole.branch_staff && (
-                            <OtherRoleAction
-                              setShowChangeBranch={setShowChangeBranch}
-                              adminRole={adminRole}
-                              client={client}
-                              handleNavigate={handleNavigate}
-                              handleOpenModal={handleOpenModal}
-                              handleShowMore={handleShowMore}
-                              i={i}
-                              readOnly={readOnly}
-                              setClientDeposit={setClientDeposit}
-                              setDirectDeposit={setDirectDeposit}
-                              setDirectWithdraw={setDirectWithdraw}
-                              setShowChangePassword={setShowChangePassword}
-                              setShowChangeStatus={setShowChangeStatus}
-                              setShowCreditRef={setShowCreditRef}
-                              showMore={showMore}
-                              showMoreRef={showMoreRef}
-                              setShowColor={setShowColor}
-                            />
-                          )}
-
-                          {/* For search branch_staff for deposit */}
-                          {searchBy === AdminRole.branch_staff &&
-                            depositPermission &&
-                            !withdrawPermission &&
-                            !clientPermission && (
-                              <DepositPermission
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                readOnly={readOnly}
-                                setClientDeposit={setClientDeposit}
-                                setDirectDeposit={setDirectDeposit}
-                                setShowChangeStatus={setShowChangeStatus}
-                              />
-                            )}
-                          {/* For search branch_staff for withdraw */}
-                          {searchBy === AdminRole.branch_staff &&
-                            withdrawPermission &&
-                            !depositPermission &&
-                            !clientPermission && (
-                              <WithdrawPermission
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                readOnly={readOnly}
-                                setDirectWithdraw={setDirectWithdraw}
-                                setShowChangeStatus={setShowChangeStatus}
-                              />
-                            )}
-                          {/* For search branch_staff  */}
-                          {adminRole === AdminRole.branch_staff &&
-                            !searchBy &&
-                            !searchHistory &&
-                            clientPermission && (
-                              <ClientPermission
-                                adminRole={adminRole}
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                handleShowMore={handleShowMore}
-                                i={i}
-                                readOnly={readOnly}
-                                setShowChangePassword={setShowChangePassword}
-                                setShowChangeStatus={setShowChangeStatus}
-                                showMore={showMore}
-                                showMoreRef={showMoreRef}
-                              />
-                            )}
-
-                          {/* all */}
-                          {searchBy === AdminRole.branch_staff &&
-                            depositPermission &&
-                            withdrawPermission &&
-                            clientPermission && (
-                              <ClientWithdrawDeposit
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                readOnly={readOnly}
-                                setClientDeposit={setClientDeposit}
-                                setDirectDeposit={setDirectDeposit}
-                                setDirectWithdraw={setDirectWithdraw}
-                                setShowChangePassword={setShowChangePassword}
-                                setShowChangeStatus={setShowChangeStatus}
-                              />
-                            )}
-
-                          {/* deposit client */}
-                          {searchBy === AdminRole.branch_staff &&
-                            depositPermission &&
-                            !withdrawPermission &&
-                            clientPermission && (
-                              <DepositClient
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                readOnly={readOnly}
-                                setClientDeposit={setClientDeposit}
-                                setDirectDeposit={setDirectDeposit}
-                                setShowChangePassword={setShowChangePassword}
-                                setShowChangeStatus={setShowChangeStatus}
-                              />
-                            )}
-                          {/* deposit withdraw */}
-                          {searchBy === AdminRole.branch_staff &&
-                            depositPermission &&
-                            withdrawPermission &&
-                            !clientPermission && (
-                              <DepositWithdraw
-                                setDirectWithdraw={setDirectWithdraw}
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                readOnly={readOnly}
-                                setClientDeposit={setClientDeposit}
-                                setDirectDeposit={setDirectDeposit}
-                                setShowChangeStatus={setShowChangeStatus}
-                              />
-                            )}
-                          {/* withdraw client */}
-                          {searchBy === AdminRole.branch_staff &&
-                            !depositPermission &&
-                            withdrawPermission &&
-                            clientPermission && (
-                              <WithdrawClient
-                                client={client}
-                                handleNavigate={handleNavigate}
-                                handleOpenModal={handleOpenModal}
-                                readOnly={readOnly}
-                                setShowChangeStatus={setShowChangeStatus}
-                                setDirectWithdraw={setDirectWithdraw}
-                                setShowChangePassword={setShowChangePassword}
-                              />
-                            )}
+                          <td>
+                            <a
+                              style={{ color: "white" }}
+                              onClick={() => handleNavigate(client)}
+                              className="btn btn-icon btn-sm btn-warning"
+                            >
+                              PL
+                            </a>
+                          </td>
                         </tr>
                       );
                     })}

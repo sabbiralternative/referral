@@ -46,7 +46,12 @@ const Home = () => {
   }, [adminRole, token]);
 
   return (
-    <div className="container-xxl flex-grow-1 container-p-y">
+    <div
+      className="container-xxl flex-grow-1 container-p-y"
+      style={{
+        display: "none",
+      }}
+    >
       {adminRole &&
         adminRole !== "admin_staff" &&
         adminRole !== "branch_staff" && (
